@@ -2013,7 +2013,7 @@ repeat
 
 until buildAttempts >= 2
 
-StarlightUI.Name = (((getgenv and getgenv().InterfaceName) or StarlightUI.Name) or "Starlight Interface Suite")
+StarlightUI.Name = (((getgenv and getgenv().InterfaceName) or StarlightUI.Name) or "❤️Yuki's Total Roblox Drama Hub❤️")
 Starlight.Instance = StarlightUI
 StarlightUI.Enabled = false
 if not isStudio then
@@ -10930,5 +10930,6 @@ end --]=]0
 	Duration = 10,
 	Icon = 105789146907268,
 })]]
+
 
 return Starlight
