@@ -33,7 +33,7 @@ The Nebula Softworks Community | Bug Testers And Suggestions For The Project
 
 --// SECTION : Core Variables
 
-local Release = "V.1"
+local Release = "v1.9.17"
 local debugV = false
 
 local Starlight = {
@@ -10932,3 +10932,4 @@ end --]=]0
 })]]
 
 return Starlight
+
