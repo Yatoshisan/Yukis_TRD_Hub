@@ -33,7 +33,7 @@ The Nebula Softworks Community | Bug Testers And Suggestions For The Project
 
 --// SECTION : Core Variables
 
-local Release = "v1.9.17"
+local Release = "V.1"
 local debugV = false
 
 local Starlight = {
@@ -1800,7 +1800,8 @@ local function AddToolTip(InfoStr, HoverInstance)
 			end
 		end)
 
-		RunService.RenderStepped:Connect(function(dt)
+		local tooltipRenderConn
+		tooltipRenderConn = RunService.RenderStepped:Connect(function(dt)
 			if not IsHovering then
 				return
 			end
@@ -1815,10 +1816,20 @@ local function AddToolTip(InfoStr, HoverInstance)
 				if hoverTime >= threshold then
 					updateTooltipPos()
 					if not String.IsEmptyOrNull(label.Text) then
-						RunService.RenderStepped:Wait()
 						tooltip.Visible = true
 					end
 				end
+			end
+		end)
+
+		HoverInstance.AncestryChanged:Connect(function(_, parent)
+			if parent == nil then
+				if tooltipRenderConn then
+					tooltipRenderConn:Disconnect()
+					tooltipRenderConn = nil
+				end
+				IsHovering = false
+				tooltip:Destroy()
 			end
 		end)
 	end
@@ -2220,12 +2231,10 @@ function Starlight:Notification(data)
 		end
 
 		task.spawn(function() end)
-		table.insert(
-			connections,
-			RunService.RenderStepped:Connect(function()
-				pcall(setDuration, tick() - creationTime)
-			end)
-		)
+		local notifTimeConn
+		notifTimeConn = RunService.RenderStepped:Connect(function()
+			pcall(setDuration, tick() - creationTime)
+		end)
 
 		notificationAcrylicEvent.Event:Connect(function()
 			if newNotification.BackgroundTransparency == 1 then
@@ -2430,6 +2439,10 @@ function Starlight:Notification(data)
 				end
 
 				CollectionService:AddTag(newNotification, "__starlight_ExpiredNotification")
+				if notifTimeConn then
+					notifTimeConn:Disconnect()
+					notifTimeConn = nil
+				end
 			end)
 		end
 		return newNotification
@@ -4275,7 +4288,7 @@ function Starlight:CreateWindow(WindowSettings)
 							Element.Instance["PART_Backdrop"].Header.Text = "Callback Error"
 							warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
 							print(tostring(Response))
-							wait(0.5)
+							task.wait(0.5)
 							Element.Instance["PART_Backdrop"].Header.Text = ElementSettings.Name
 						end
 					end)
@@ -4362,7 +4375,7 @@ function Starlight:CreateWindow(WindowSettings)
 							Element.Instance["PART_Backdrop"].Header.Text = "Callback Error"
 							warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
 							print(tostring(Response))
-							wait(0.5)
+							task.wait(0.5)
 							Element.Instance["PART_Backdrop"].Header.Text = ElementSettings.Name
 						end
 					end)
@@ -4429,7 +4442,7 @@ function Starlight:CreateWindow(WindowSettings)
 								Element.Instance.Header.Text = "Callback Error"
 								warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
 								print(tostring(Response))
-								wait(0.5)
+								task.wait(0.5)
 								Element.Instance.Header.Text = ElementSettings.Name
 							end
 						end
@@ -4457,7 +4470,7 @@ function Starlight:CreateWindow(WindowSettings)
 							Element.Instance.Header.Text = "Callback Error"
 							warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
 							print(tostring(Response))
-							wait(0.5)
+							task.wait(0.5)
 							Element.Instance.Header.Text = ElementSettings.Name
 						end
 					end)
@@ -4562,7 +4575,7 @@ function Starlight:CreateWindow(WindowSettings)
 								Element.Instance.Header.Text = "Callback Error"
 								warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
 								print(tostring(Response))
-								wait(0.5)
+								task.wait(0.5)
 								Element.Instance.Header.Text = ElementSettings.Name
 							end
 						end
@@ -4580,7 +4593,7 @@ function Starlight:CreateWindow(WindowSettings)
 							Element.Instance.Header.Text = "Callback Error"
 							warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
 							print(tostring(Response))
-							wait(0.5)
+							task.wait(0.5)
 							Element.Instance.Header.Text = ElementSettings.Name
 						end
 					end)
@@ -4897,7 +4910,7 @@ function Starlight:CreateWindow(WindowSettings)
 										Element.Instance.Header.Text = "Callback Error"
 										warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
 										print(tostring(Response))
-										wait(0.5)
+										task.wait(0.5)
 										Element.Instance.Header.Text = ElementSettings.Name
 									end
 									Element.Instance.Bind:ReleaseFocus()
@@ -4915,7 +4928,7 @@ function Starlight:CreateWindow(WindowSettings)
 										Element.Instance.Header.Text = "Callback Error"
 										warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
 										print(tostring(Response))
-										wait(0.5)
+										task.wait(0.5)
 										Element.Instance.Header.Text = ElementSettings.Name
 									end
 								elseif input.UserInputType == Enum.UserInputType.MouseButton2 then
@@ -4930,7 +4943,7 @@ function Starlight:CreateWindow(WindowSettings)
 										Element.Instance.Header.Text = "Callback Error"
 										warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
 										print(tostring(Response))
-										wait(0.5)
+										task.wait(0.5)
 										Element.Instance.Header.Text = ElementSettings.Name
 									end
 								end
@@ -4971,11 +4984,11 @@ function Starlight:CreateWindow(WindowSettings)
 									Element.Instance.Header.Text = "Callback Error"
 									warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
 									print(tostring(Response))
-									wait(0.5)
+									task.wait(0.5)
 									Element.Instance.Header.Text = ElementSettings.Name
 								end
 							else
-								wait(0.1)
+								task.wait(0.1)
 								if Held then
 									local Loop; Loop = RunService.Stepped:Connect(function()
 										if not Held then
@@ -4987,7 +5000,7 @@ function Starlight:CreateWindow(WindowSettings)
 												Element.Instance.Header.Text = "Callback Error"
 												warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
 												print(tostring(Response))
-												wait(0.5)
+												task.wait(0.5)
 												Element.Instance.Header.Text = ElementSettings.Name
 											end
 											Loop:Disconnect()
@@ -5000,7 +5013,7 @@ function Starlight:CreateWindow(WindowSettings)
 												Element.Instance.Header.Text = "Callback Error"
 												warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
 												print(tostring(Response))
-												wait(0.5)
+												task.wait(0.5)
 												Element.Instance.Header.Text = ElementSettings.Name
 											end
 										end
@@ -5224,7 +5237,7 @@ function Starlight:CreateWindow(WindowSettings)
 											Icon = 129398364168201,
 										})
 									end
-									wait(0.5)
+									task.wait(0.5)
 									ElementInstance["PART_Backdrop"].Header.Header.Text = ElementSettings.Name
 								end
 							end)
@@ -5455,7 +5468,7 @@ function Starlight:CreateWindow(WindowSettings)
 												Icon = 129398364168201,
 											})
 										end
-										wait(0.5)
+										task.wait(0.5)
 										ElementInstance.Header.Text = ElementSettings.Name
 									end
 								end
@@ -5491,7 +5504,7 @@ function Starlight:CreateWindow(WindowSettings)
 												Icon = 129398364168201,
 											})
 										end
-										wait(0.5)
+										task.wait(0.5)
 										ElementInstance.Header.Text = ElementSettings.Name
 									end
 								end)
@@ -5541,7 +5554,7 @@ function Starlight:CreateWindow(WindowSettings)
 												Icon = 129398364168201,
 											})
 										end
-										wait(0.5)
+										task.wait(0.5)
 										ElementInstance.Header.Text = ElementSettings.Name
 									end
 								end
@@ -5583,7 +5596,7 @@ function Starlight:CreateWindow(WindowSettings)
 												Icon = 129398364168201,
 											})
 										end
-										wait(0.5)
+										task.wait(0.5)
 										ElementInstance.Header.Text = ElementSettings.Name
 									end
 								end)
@@ -5644,7 +5657,7 @@ function Starlight:CreateWindow(WindowSettings)
 										Icon = 129398364168201,
 									})
 								end
-								wait(0.5)
+								task.wait(0.5)
 								for _, ElementInstance in pairs(Instances) do
 									ElementInstance.Header.Text = ElementSettings.Name
 								end
@@ -5910,7 +5923,7 @@ function Starlight:CreateWindow(WindowSettings)
 											Icon = 129398364168201,
 										})
 									end
-									wait(0.5)
+									task.wait(0.5)
 									Element.Instance.Header.Text = ElementSettings.Name
 								end
 							end
@@ -6029,7 +6042,7 @@ function Starlight:CreateWindow(WindowSettings)
 													Icon = 129398364168201,
 												})
 											end
-											wait(0.5)
+											task.wait(0.5)
 											Element.Instance.Header.Text = ElementSettings.Name
 										end
 
@@ -6077,6 +6090,7 @@ function Starlight:CreateWindow(WindowSettings)
 							local dotUsed = false
 							local survivorsBeforeCursor = 0
 							local cursorPos = tb.CursorPosition or (#newText + 1)
+							local rangeMin = (Element.Values and Element.Values.Range and Element.Values.Range[1]) or 0
 
 							for i = 1, #newText do
 								local ch = newText:sub(i, i)
@@ -6088,6 +6102,11 @@ function Starlight:CreateWindow(WindowSettings)
 								elseif ch == "." and not dotUsed then
 									dotUsed = true
 									table.insert(sanitizedBuilder, ".")
+									if i < cursorPos then
+										survivorsBeforeCursor = survivorsBeforeCursor + 1
+									end
+								elseif ch == "-" and i == 1 and rangeMin < 0 then
+									table.insert(sanitizedBuilder, "-")
 									if i < cursorPos then
 										survivorsBeforeCursor = survivorsBeforeCursor + 1
 									end
@@ -6330,7 +6349,7 @@ function Starlight:CreateWindow(WindowSettings)
 											Icon = 129398364168201,
 										})
 									end
-									wait(0.5)
+									task.wait(0.5)
 									Element.Instance.Header.Text = ElementSettings.Name
 								end
 							end
@@ -6401,7 +6420,7 @@ function Starlight:CreateWindow(WindowSettings)
 											Icon = 129398364168201,
 										})
 									end
-									wait(0.5)
+									task.wait(0.5)
 									Element.Instance.Header.Text = ElementSettings.Name
 								end
 							end
@@ -6521,7 +6540,7 @@ function Starlight:CreateWindow(WindowSettings)
 										Icon = 129398364168201,
 									})
 								end
-								wait(0.5)
+								task.wait(0.5)
 								Element.Instance.Header.Text = ElementSettings.Name
 							end
 
@@ -6820,7 +6839,7 @@ function Starlight:CreateWindow(WindowSettings)
 															Icon = 129398364168201,
 														})
 													end
-													wait(0.5)
+													task.wait(0.5)
 													Parent.Instance.Header.Text = ElementSettings.Name
 												end
 												NestedElement.Instance:ReleaseFocus()
@@ -6855,7 +6874,7 @@ function Starlight:CreateWindow(WindowSettings)
 															Icon = 129398364168201,
 														})
 													end
-													wait(0.5)
+													task.wait(0.5)
 													Parent.Instance.Header.Text = ElementSettings.Name
 												end
 												NestedElement.Instance:ReleaseFocus()
@@ -6902,7 +6921,7 @@ function Starlight:CreateWindow(WindowSettings)
 															Icon = 129398364168201,
 														})
 													end
-													wait(0.5)
+													task.wait(0.5)
 													Parent.Instance.Header.Text = ElementSettings.Name
 												end
 											elseif input.UserInputType == Enum.UserInputType.MouseButton2 then
@@ -6928,7 +6947,7 @@ function Starlight:CreateWindow(WindowSettings)
 															Icon = 129398364168201,
 														})
 													end
-													wait(0.5)
+													task.wait(0.5)
 													Parent.Instance.Header.Text = ElementSettings.Name
 												end
 											end
@@ -6978,7 +6997,7 @@ function Starlight:CreateWindow(WindowSettings)
 														Icon = 129398364168201,
 													})
 												end
-												wait(0.5)
+												task.wait(0.5)
 												Parent.Instance.Header.Text = ElementSettings.Name
 											end
 										else
@@ -7009,7 +7028,7 @@ function Starlight:CreateWindow(WindowSettings)
 														Icon = 129398364168201,
 													})
 												end
-												wait(0.5)
+												task.wait(0.5)
 												Parent.Instance.Header.Text = ElementSettings.Name
 											end
 
@@ -7044,7 +7063,7 @@ function Starlight:CreateWindow(WindowSettings)
 																Icon = 129398364168201,
 															})
 														end
-														wait(0.5)
+														task.wait(0.5)
 														Parent.Instance.Header.Text = ElementSettings.Name
 													end
 												end
@@ -7074,7 +7093,7 @@ function Starlight:CreateWindow(WindowSettings)
 										Icon = 129398364168201,
 									})
 								end
-								wait(0.5)
+								task.wait(0.5)
 								Parent.Instance.Header.Text = ElementSettings.Name
 							end
 
@@ -7139,7 +7158,7 @@ function Starlight:CreateWindow(WindowSettings)
 											Icon = 129398364168201,
 										})
 									end
-									wait(0.5)
+									task.wait(0.5)
 									Parent.Instance.Header.Text = ElementSettings.Name
 								end
 
@@ -7361,7 +7380,7 @@ function Starlight:CreateWindow(WindowSettings)
 											Icon = 129398364168201,
 										})
 									end
-									wait(0.5)
+									task.wait(0.5)
 									Parent.Instance.Header.Text = Element.Values.Name
 								end
 							end
@@ -8405,7 +8424,7 @@ function Starlight:CreateWindow(WindowSettings)
 												Icon = 129398364168201,
 											})
 										end
-										wait(0.5)
+										task.wait(0.5)
 										Parent.Instance.Header.Text = ElementSettings.Name
 									end
 								else
@@ -8437,7 +8456,7 @@ function Starlight:CreateWindow(WindowSettings)
 												Icon = 129398364168201,
 											})
 										end
-										wait(0.5)
+										task.wait(0.5)
 										Parent.Instance.Header.Text = ElementSettings.Name
 									end
 								end
@@ -10932,4 +10951,3 @@ end --]=]0
 })]]
 
 return Starlight
-
