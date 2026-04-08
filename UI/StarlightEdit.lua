@@ -1359,7 +1359,6 @@ local function Hide(Interface, JustHide: boolean?, Notify: boolean?, Bind: strin
 	JustHide = JustHide or false
 
 	TransparencyValues[Interface.Name] = TransparencyValues[Interface.Name] or {}
-	-- Clear Table
 	table.clear(TransparencyValues[Interface.Name])
 
 	for i, v in pairs(Interface:GetDescendants()) do
@@ -1375,68 +1374,60 @@ local function Hide(Interface, JustHide: boolean?, Notify: boolean?, Bind: strin
 			and v.ClassName ~= "UISizeConstraint"
 			and v.ClassName ~= "UIAspectRatioConstraint"
 		then
-			-- Create And Set Subtables
 			if JustHide == false then
-				v:SetAttribute("InstanceID", HttpService:GenerateGUID(false)) -- we are doing this cus roblox fucking removed/disabled the UniqueId feature, and stuff might have the same name
+				v:SetAttribute("InstanceID", HttpService:GenerateGUID(false))
 
-				TransparencyValues[Interface.Name][v:GetAttribute("InstanceID")] = {}
+				local entry = {}
+				TransparencyValues[Interface.Name][v:GetAttribute("InstanceID")] = entry
 
 				if v.ClassName == "Frame" then
-					TransparencyValues[Interface.Name][v:GetAttribute("InstanceID")].BackgroundTransparency =
-						v.BackgroundTransparency
+					entry.BackgroundTransparency = v.BackgroundTransparency
 				end
 
 				if v.ClassName == "TextLabel" or v.ClassName == "TextBox" or v.ClassName == "TextButton" then
-					TransparencyValues[Interface.Name][v:GetAttribute("InstanceID")].BackgroundTransparency =
-						v.BackgroundTransparency
-					TransparencyValues[Interface.Name][v:GetAttribute("InstanceID")].TextTransparency =
-						v.TextTransparency
+					entry.BackgroundTransparency = v.BackgroundTransparency
+					entry.TextTransparency = v.TextTransparency
 				end
 
 				if v.ClassName == "ImageLabel" or v.ClassName == "ImageButton" then
-					TransparencyValues[Interface.Name][v:GetAttribute("InstanceID")].BackgroundTransparency =
-						v.BackgroundTransparency
-					TransparencyValues[Interface.Name][v:GetAttribute("InstanceID")].ImageTransparency =
-						v.ImageTransparency
+					entry.BackgroundTransparency = v.BackgroundTransparency
+					entry.ImageTransparency = v.ImageTransparency
 				end
 
-				-- do this cus roblox gui stuff have a although deprecated class, its still accesible by scripts
-				-- and sets text and transparency values which is smth we dont want
 				if v.ClassName == "UIStroke" or v.ClassName == "UIGradient" then
-					TransparencyValues[Interface.Name][v:GetAttribute("InstanceID")].Transparency = v.Transparency
+					entry.Transparency = v.Transparency
 				end
 			end
 
-			-- Actually Hide The Stuff
 			if v.ClassName == "Frame" then
-				Tween(v, { BackgroundTransparency = 1 })
+				v.BackgroundTransparency = 1
 			end
 
 			if v.ClassName == "TextLabel" or v.ClassName == "TextBox" or v.ClassName == "TextButton" then
-				Tween(v, { BackgroundTransparency = 1 })
-				Tween(v, { TextTransparency = 1 })
+				v.BackgroundTransparency = 1
+				v.TextTransparency = 1
 			end
 
 			if v.ClassName == "ImageLabel" or v.ClassName == "ImageButton" then
-				Tween(v, { BackgroundTransparency = 1 })
-				Tween(v, { ImageTransparency = 1 })
+				v.BackgroundTransparency = 1
+				v.ImageTransparency = 1
 			end
 
 			if v.ClassName == "UIStroke" or Interface.ClassName == "UIGradient" then
-				Tween(v, { Transparency = 1 })
+				v.Transparency = 1
 			end
 		end
 	end
 
 	if Interface.ClassName ~= "ScreenGui" then
 		if JustHide == false then
-			Interface:SetAttribute("InstanceID", HttpService:GenerateGUID(false)) -- we are doing this cus roblox fucking removed/disabled the UniqueId feature, and stuff might have the same name
+			Interface:SetAttribute("InstanceID", HttpService:GenerateGUID(false))
 
-			TransparencyValues[Interface.Name][Interface:GetAttribute("InstanceID")] = {}
+			local entry = {}
+			TransparencyValues[Interface.Name][Interface:GetAttribute("InstanceID")] = entry
 
 			if Interface.ClassName == "Frame" then
-				TransparencyValues[Interface.Name][Interface:GetAttribute("InstanceID")].BackgroundTransparency =
-					Interface.BackgroundTransparency
+				entry.BackgroundTransparency = Interface.BackgroundTransparency
 			end
 
 			if
@@ -1444,30 +1435,22 @@ local function Hide(Interface, JustHide: boolean?, Notify: boolean?, Bind: strin
 				or Interface.ClassName == "TextBox"
 				or Interface.ClassName == "TextButton"
 			then
-				TransparencyValues[Interface.Name][Interface:GetAttribute("InstanceID")].BackgroundTransparency =
-					Interface.BackgroundTransparency
-				TransparencyValues[Interface.Name][Interface:GetAttribute("InstanceID")].TextTransparency =
-					Interface.TextTransparency
+				entry.BackgroundTransparency = Interface.BackgroundTransparency
+				entry.TextTransparency = Interface.TextTransparency
 			end
 
 			if Interface.ClassName == "ImageLabel" or Interface.ClassName == "ImageButton" then
-				TransparencyValues[Interface.Name][Interface:GetAttribute("InstanceID")].BackgroundTransparency =
-					Interface.BackgroundTransparency
-				TransparencyValues[Interface.Name][Interface:GetAttribute("InstanceID")].ImageTransparency =
-					Interface.ImageTransparency
+				entry.BackgroundTransparency = Interface.BackgroundTransparency
+				entry.ImageTransparency = Interface.ImageTransparency
 			end
 
-			-- do this cus roblox gui stuff have a although deprecated class, its still accesible by scripts
-			-- and sets text and transparency values which is smth we dont want
 			if Interface.ClassName == "UIStroke" or Interface.ClassName == "UIGradient" then
-				TransparencyValues[Interface.Name][Interface:GetAttribute("InstanceID")].Transparency =
-					Interface.Transparency
+				entry.Transparency = Interface.Transparency
 			end
 		end
 
-		-- Actually Hide The Stuff
 		if Interface.ClassName == "Frame" then
-			Tween(Interface, { BackgroundTransparency = 1 })
+			Interface.BackgroundTransparency = 1
 		end
 
 		if
@@ -1475,17 +1458,17 @@ local function Hide(Interface, JustHide: boolean?, Notify: boolean?, Bind: strin
 			or Interface.ClassName == "TextBox"
 			or Interface.ClassName == "TextButton"
 		then
-			Tween(Interface, { BackgroundTransparency = 1 })
-			Tween(Interface, { TextTransparency = 1 })
+			Interface.BackgroundTransparency = 1
+			Interface.TextTransparency = 1
 		end
 
 		if Interface.ClassName == "ImageLabel" or Interface.ClassName == "ImageButton" then
-			Tween(Interface, { BackgroundTransparency = 1 })
-			Tween(Interface, { ImageTransparency = 1 })
+			Interface.BackgroundTransparency = 1
+			Interface.ImageTransparency = 1
 		end
 
 		if Interface.ClassName == "UIStroke" or Interface.ClassName == "UIGradient" then
-			Tween(Interface, { Transparency = 1 })
+			Interface.Transparency = 1
 		end
 	end
 	
