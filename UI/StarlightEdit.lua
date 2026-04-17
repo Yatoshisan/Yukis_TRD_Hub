@@ -3294,7 +3294,7 @@ function Starlight:CreateWindow(WindowSettings)
 				elseif hour >= 19 and hour <= 23 then
 					greetingString = "Sweet Dreams."
 				else
-					greetingString = "Jeez you should be asleep..."
+					greetingString = "Move your ass into bed, it's late..."
 				end
 				Tab.Instances.Page.playerUser.Text = `{greetingString} | {Player.Name}`
 
@@ -3369,7 +3369,7 @@ function Starlight:CreateWindow(WindowSettings)
 			Tab.Instances.Page.Holder.Left.Server.Frame.maxplayers.Text = '<font size="14" color="#FFF" weight="semibold">Capacity</font>\n'
 				.. Players.MaxPlayers
 				.. (Players.MaxPlayers > 1 and " Players" or " Player")
-				.. "can join."
+				.. " can join."
 		end
 		local function protectedUpdate() -- apparently creating less funcs and locals help with memory so im doing this
 			pcall(updatePlayerCount)
