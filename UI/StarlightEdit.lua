@@ -3369,7 +3369,7 @@ function Starlight:CreateWindow(WindowSettings)
 			Tab.Instances.Page.Holder.Left.Server.Frame.maxplayers.Text = '<font size="14" color="#FFF" weight="semibold">Capacity</font>\n'
 				.. Players.MaxPlayers
 				.. (Players.MaxPlayers > 1 and " Players" or " Player")
-				.. " In\ncan join."
+				.. "can join."
 		end
 		local function protectedUpdate() -- apparently creating less funcs and locals help with memory so im doing this
 			pcall(updatePlayerCount)
@@ -3470,7 +3470,7 @@ function Starlight:CreateWindow(WindowSettings)
 				end
 			end
 
-			Tab.Instances.Page.Holder.Left.Server.Frame.time.Text = '<font size="14" color="#FFF" weight="semibold">Players</font>\n'
+			Tab.Instances.Page.Holder.Left.Server.Frame.time.Text = '<font size="14" color="#FFF" weight="semibold">Time in Server</font>\n'
 				.. convertToHMS(time())
 		end
 		
