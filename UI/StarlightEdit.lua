@@ -33,7 +33,7 @@ The Nebula Softworks Community | Bug Testers And Suggestions For The Project
 
 --// SECTION : Core Variables
 
-local Release = "V1.1 Edit"
+local Release = "V1.1 Edit (Deprecated)"
 local debugV = false
 
 local Starlight = {
@@ -1936,7 +1936,7 @@ repeat
 
 until buildAttempts >= 2
 
-StarlightUI.Name = (((getgenv and getgenv().InterfaceName) or StarlightUI.Name) or "Yuki's Total Roblox Drama Hub")
+StarlightUI.Name = (((getgenv and getgenv().InterfaceName) or StarlightUI.Name) or "Yuki's TRD Hub")
 Starlight.Instance = StarlightUI
 StarlightUI.Enabled = false
 if not isStudio then
@@ -2580,7 +2580,7 @@ function Starlight:CreateWindow(WindowSettings)
 		)
 
 		mainWindow.ModalOverlay.Visible = false
-		--[[mainWindow["Loading Screen"].Version.Text = WindowSettings.LoadingSettings.Title == "Yuki's Total Roblox Drama Hub" and Release or "Yuki's Total Roblox Drama Hub " .. Release
+		--[[mainWindow["Loading Screen"].Version.Text = WindowSettings.LoadingSettings.Title == "Yuki's TRD Hub" and Release or "Yuki's TRD Hub " .. Release
 		mainWindow["Loading Screen"].Frame.SubFrame.Title.Text = WindowSettings.LoadingSettings.Title or ""
 		mainWindow["Loading Screen"].Frame.SubFrame.Subtitle.Text = WindowSettings.LoadingSettings.Subtitle or ""]]
 		if WindowSettings.LoadingSettings then
@@ -2744,8 +2744,8 @@ function Starlight:CreateWindow(WindowSettings)
 				title.TextTransparency = 1
 
 				title.Text = WindowSettings.LoadingSettings and WindowSettings.LoadingSettings.Title
-					or "Yuki's Total Roblox Drama Hub"
-				versionLabel.Text = title.Text == "Yuki's Total Roblox Drama Hub" and Release or `Starlight UI {Release}`
+					or "Yuki's TRD Hub"
+				versionLabel.Text = title.Text == "Yuki's TRD Hub" and Release or `Starlight UI {Release}`
 				title.playerName.Text = Player.DisplayName
 				playerIcon.Image = Players:GetUserThumbnailAsync(
 					Player.UserId,
@@ -3032,7 +3032,7 @@ function Starlight:CreateWindow(WindowSettings)
 						local Success, Response = pcall(Action.Callback)
 
 						if not Success then
-							warn(`Yuki's Total Roblox Drama Hub - Callback Error | Dialog {Modal.Values.Name}`)
+							warn(`Yuki's TRD Hub - Callback Error | Dialog {Modal.Values.Name}`)
 							print(Response)
 							if WindowSettings.NotifyOnCallbackError then
 								Starlight:Notification({
@@ -3077,7 +3077,7 @@ function Starlight:CreateWindow(WindowSettings)
 							end)
 
 							if not Success then
-								warn(`Yuki's Total Roblox Drama Hub - Callback Error | Dialog {Modal.Values.Name}`)
+								warn(`Yuki's TRD Hub - Callback Error | Dialog {Modal.Values.Name}`)
 								print(Response)
 								if WindowSettings.NotifyOnCallbackError then
 									Starlight:Notification({
@@ -4204,7 +4204,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 						if not Success then
 							Element.Instance["PART_Backdrop"].Header.Text = "Callback Error"
-							warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
+							warn("Yuki's TRD Hub | "..ElementSettings.Name.." Callback Error")
 							print(tostring(Response))
 							task.wait(0.5)
 							Element.Instance["PART_Backdrop"].Header.Text = ElementSettings.Name
@@ -4291,7 +4291,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 						if not Success then
 							Element.Instance["PART_Backdrop"].Header.Text = "Callback Error"
-							warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
+							warn("Yuki's TRD Hub | "..ElementSettings.Name.." Callback Error")
 							print(tostring(Response))
 							task.wait(0.5)
 							Element.Instance["PART_Backdrop"].Header.Text = ElementSettings.Name
@@ -4358,7 +4358,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 							if not Success then
 								Element.Instance.Header.Text = "Callback Error"
-								warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
+								warn("Yuki's TRD Hub | "..ElementSettings.Name.." Callback Error")
 								print(tostring(Response))
 								task.wait(0.5)
 								Element.Instance.Header.Text = ElementSettings.Name
@@ -4386,7 +4386,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 						if not Success then
 							Element.Instance.Header.Text = "Callback Error"
-							warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
+							warn("Yuki's TRD Hub | "..ElementSettings.Name.." Callback Error")
 							print(tostring(Response))
 							task.wait(0.5)
 							Element.Instance.Header.Text = ElementSettings.Name
@@ -4491,7 +4491,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 							if not Success then
 								Element.Instance.Header.Text = "Callback Error"
-								warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
+								warn("Yuki's TRD Hub | "..ElementSettings.Name.." Callback Error")
 								print(tostring(Response))
 								task.wait(0.5)
 								Element.Instance.Header.Text = ElementSettings.Name
@@ -4509,7 +4509,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 						if not Success then
 							Element.Instance.Header.Text = "Callback Error"
-							warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
+							warn("Yuki's TRD Hub | "..ElementSettings.Name.." Callback Error")
 							print(tostring(Response))
 							task.wait(0.5)
 							Element.Instance.Header.Text = ElementSettings.Name
@@ -4826,7 +4826,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 									if not Success then
 										Element.Instance.Header.Text = "Callback Error"
-										warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
+										warn("Yuki's TRD Hub | "..ElementSettings.Name.." Callback Error")
 										print(tostring(Response))
 										task.wait(0.5)
 										Element.Instance.Header.Text = ElementSettings.Name
@@ -4844,7 +4844,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 									if not Success then
 										Element.Instance.Header.Text = "Callback Error"
-										warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
+										warn("Yuki's TRD Hub | "..ElementSettings.Name.." Callback Error")
 										print(tostring(Response))
 										task.wait(0.5)
 										Element.Instance.Header.Text = ElementSettings.Name
@@ -4859,7 +4859,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 									if not Success then
 										Element.Instance.Header.Text = "Callback Error"
-										warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
+										warn("Yuki's TRD Hub | "..ElementSettings.Name.." Callback Error")
 										print(tostring(Response))
 										task.wait(0.5)
 										Element.Instance.Header.Text = ElementSettings.Name
@@ -4900,7 +4900,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 								if not Success then
 									Element.Instance.Header.Text = "Callback Error"
-									warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
+									warn("Yuki's TRD Hub | "..ElementSettings.Name.." Callback Error")
 									print(tostring(Response))
 									task.wait(0.5)
 									Element.Instance.Header.Text = ElementSettings.Name
@@ -4916,7 +4916,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 											if not Success then
 												Element.Instance.Header.Text = "Callback Error"
-												warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
+												warn("Yuki's TRD Hub | "..ElementSettings.Name.." Callback Error")
 												print(tostring(Response))
 												task.wait(0.5)
 												Element.Instance.Header.Text = ElementSettings.Name
@@ -4929,7 +4929,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 											if not Success then
 												Element.Instance.Header.Text = "Callback Error"
-												warn("Yuki's Total Roblox Drama Hub | "..ElementSettings.Name.." Callback Error")
+												warn("Yuki's TRD Hub | "..ElementSettings.Name.." Callback Error")
 												print(tostring(Response))
 												task.wait(0.5)
 												Element.Instance.Header.Text = ElementSettings.Name
@@ -5146,7 +5146,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 								if not Success then
 									ElementInstance["PART_Backdrop"].Header.Header.Text = "Callback Error"
-									warn(`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index})`)
+									warn(`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index})`)
 									print(Response)
 									if WindowSettings.NotifyOnCallbackError then
 										Starlight:Notification({
@@ -5376,7 +5376,7 @@ function Starlight:CreateWindow(WindowSettings)
 									if not Success then
 										ElementInstance.Header.Text = "Callback Error"
 										warn(
-											`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index})`
+											`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index})`
 										)
 										print(Response)
 										if WindowSettings.NotifyOnCallbackError then
@@ -5412,7 +5412,7 @@ function Starlight:CreateWindow(WindowSettings)
 									if not Success then
 										ElementInstance.Header.Text = "Callback Error"
 										warn(
-											`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index})`
+											`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index})`
 										)
 										print(Response)
 										if WindowSettings.NotifyOnCallbackError then
@@ -5462,7 +5462,7 @@ function Starlight:CreateWindow(WindowSettings)
 									if not Success then
 										ElementInstance.Header.Text = "Callback Error"
 										warn(
-											`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index})`
+											`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index})`
 										)
 										print(Response)
 										if WindowSettings.NotifyOnCallbackError then
@@ -5504,7 +5504,7 @@ function Starlight:CreateWindow(WindowSettings)
 									if not Success then
 										ElementInstance.Header.Text = "Callback Error"
 										warn(
-											`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index})`
+											`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index})`
 										)
 										print(Response)
 										if WindowSettings.NotifyOnCallbackError then
@@ -5566,7 +5566,7 @@ function Starlight:CreateWindow(WindowSettings)
 								for _, ElementInstance in pairs(Instances) do
 									ElementInstance.Header.Text = "Callback Error"
 								end
-								warn(`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index})`)
+								warn(`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index})`)
 								print(Response)
 								if WindowSettings.NotifyOnCallbackError then
 									Starlight:Notification({
@@ -5832,7 +5832,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 								if not Success then
 									Element.Instance.Header.Text = "Callback Error"
-									warn(`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index})`)
+									warn(`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index})`)
 									print(Response)
 									if WindowSettings.NotifyOnCallbackError then
 										Starlight:Notification({
@@ -5950,7 +5950,7 @@ function Starlight:CreateWindow(WindowSettings)
 										if not Success then
 											Element.Instance.Header.Text = "Callback Error"
 											warn(
-												`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index})`
+												`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index})`
 											)
 											print(Response)
 											if WindowSettings.NotifyOnCallbackError then
@@ -6258,7 +6258,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 								if not Success then
 									Element.Instance.Header.Text = "Callback Error"
-									warn(`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index})`)
+									warn(`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index})`)
 									print(Response)
 									if WindowSettings.NotifyOnCallbackError then
 										Starlight:Notification({
@@ -6329,7 +6329,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 								if not Success then
 									Element.Instance.Header.Text = "Callback Error"
-									warn(`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index})`)
+									warn(`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index})`)
 									print(Response)
 									if WindowSettings.NotifyOnCallbackError then
 										Starlight:Notification({
@@ -6449,7 +6449,7 @@ function Starlight:CreateWindow(WindowSettings)
 
 							if not Success then
 								Element.Instance.Header.Text = "Callback Error"
-								warn(`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index})`)
+								warn(`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index})`)
 								print(Response)
 								if WindowSettings.NotifyOnCallbackError then
 									Starlight:Notification({
@@ -6747,7 +6747,7 @@ function Starlight:CreateWindow(WindowSettings)
 												if not Success then
 													Parent.Instance.Header.Text = "Callback Error"
 													warn(
-														`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
+														`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
 													)
 													print(Response)
 													if WindowSettings.NotifyOnCallbackError then
@@ -6782,7 +6782,7 @@ function Starlight:CreateWindow(WindowSettings)
 												if not Success then
 													Parent.Instance.Header.Text = "Callback Error"
 													warn(
-														`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
+														`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
 													)
 													print(Response)
 													if WindowSettings.NotifyOnCallbackError then
@@ -6829,7 +6829,7 @@ function Starlight:CreateWindow(WindowSettings)
 												if not Success then
 													Parent.Instance.Header.Text = "Callback Error"
 													warn(
-														`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
+														`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
 													)
 													print(Response)
 													if WindowSettings.NotifyOnCallbackError then
@@ -6855,7 +6855,7 @@ function Starlight:CreateWindow(WindowSettings)
 												if not Success then
 													Parent.Instance.Header.Text = "Callback Error"
 													warn(
-														`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
+														`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
 													)
 													print(Response)
 													if WindowSettings.NotifyOnCallbackError then
@@ -6905,7 +6905,7 @@ function Starlight:CreateWindow(WindowSettings)
 											if not success then
 												Parent.Instance.Header.Text = "Callback Error"
 												warn(
-													`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
+													`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
 												)
 												print(response)
 												if WindowSettings.NotifyOnCallbackError then
@@ -6936,7 +6936,7 @@ function Starlight:CreateWindow(WindowSettings)
 											if not success then
 												Parent.Instance.Header.Text = "Callback Error"
 												warn(
-													`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
+													`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
 												)
 												print(response)
 												if WindowSettings.NotifyOnCallbackError then
@@ -6971,7 +6971,7 @@ function Starlight:CreateWindow(WindowSettings)
 													if not success2 then
 														Parent.Instance.Header.Text = "Callback Error"
 														warn(
-															`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
+															`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
 														)
 														print(response2)
 														if WindowSettings.NotifyOnCallbackError then
@@ -7001,7 +7001,7 @@ function Starlight:CreateWindow(WindowSettings)
 							if not Success then
 								Parent.Instance.Header.Text = "Callback Error"
 								warn(
-									`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
+									`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
 								)
 								print(Response)
 								if WindowSettings.NotifyOnCallbackError then
@@ -7066,7 +7066,7 @@ function Starlight:CreateWindow(WindowSettings)
 								if not Success then
 									Parent.Instance.Header.Text = "Callback Error"
 									warn(
-										`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
+										`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
 									)
 									print(Response)
 									if WindowSettings.NotifyOnCallbackError then
@@ -7288,7 +7288,7 @@ function Starlight:CreateWindow(WindowSettings)
 								if not Success then
 									Parent.Instance.Header.Text = "Callback Error"
 									warn(
-										`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
+										`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
 									)
 									print(Response)
 									if WindowSettings.NotifyOnCallbackError then
@@ -8332,7 +8332,7 @@ function Starlight:CreateWindow(WindowSettings)
 									if not Success then
 										Parent.Instance.Header.Text = "Callback Error"
 										warn(
-											`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
+											`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
 										)
 										print(Response)
 										if WindowSettings.NotifyOnCallbackError then
@@ -8364,7 +8364,7 @@ function Starlight:CreateWindow(WindowSettings)
 									if not Success then
 										Parent.Instance.Header.Text = "Callback Error"
 										warn(
-											`Yuki's Total Roblox Drama Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
+											`Yuki's TRD Hub - Callback Error | {Element.Values.Name} ({Index} {NestedIndex})`
 										)
 										print(Response)
 										if WindowSettings.NotifyOnCallbackError then
@@ -10491,7 +10491,7 @@ if isStudio and enabled then
 
 		LoadingEnabled = false,
 		LoadingSettings = {
-			Title = "Yuki's Total Roblox Drama Hub",
+			Title = "Yuki's TRD Hub",
 			Subtitle = "Welcome To Yuki's TRD Hub ❤️",
 		},
 
