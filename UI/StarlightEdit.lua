@@ -33,7 +33,7 @@ The Nebula Softworks Community | Bug Testers And Suggestions For The Project
 
 --// SECTION : Core Variables
 
-local Release = "V1.2 Edit (Deprecated)"
+local Release = "V1.1 Edit (Deprecated)"
 local debugV = false
 
 local Starlight = {
@@ -1411,8 +1411,10 @@ local function Hide(Interface, JustHide: boolean?, Notify: boolean?, Bind: strin
 				v.ImageTransparency = 1
 			end
 
-			if v.ClassName == "UIStroke" or v.ClassName == "UIGradient" then
+			if v.ClassName == "UIStroke" then
 				v.Transparency = 1
+			elseif v.ClassName == "UIGradient" then
+				v.Transparency = NumberSequence.new(1)
 			end
 		end
 	end
@@ -1465,8 +1467,10 @@ local function Hide(Interface, JustHide: boolean?, Notify: boolean?, Bind: strin
 			Interface.ImageTransparency = 1
 		end
 
-		if Interface.ClassName == "UIStroke" or Interface.ClassName == "UIGradient" then
+		if Interface.ClassName == "UIStroke" then
 			Interface.Transparency = 1
+		elseif Interface.ClassName == "UIGradient" then
+			Interface.Transparency = NumberSequence.new(1)
 		end
 	end
 	
