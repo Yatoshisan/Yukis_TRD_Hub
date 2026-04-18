@@ -1523,7 +1523,7 @@ local function Hide(Interface, JustHide: boolean?, Notify: boolean?, Bind: strin
 		end
 	end
 
-	if Interface.ClassName == "ScreenGui" then
+	if Notify then
 		Starlight.Minimized = true
 	end
 end
