@@ -1411,13 +1411,9 @@ local function Hide(Interface, JustHide: boolean?, Notify: boolean?, Bind: strin
 				v.ImageTransparency = 1
 			end
 
-			if v.ClassName == "UIStroke" then
+			if v.ClassName == "UIStroke" or v.ClassName == "UIGradient" then
 				v.Transparency = 1
 			end
-			-- UIGradient.Transparency is intentionally NOT zeroed here:
-			-- its transparency on TextLabel children would make text permanently invisible
-			-- since notification fade-in only restores TextTransparency, not UIGradient.Transparency.
-			-- Text/image hiding is already covered by TextTransparency and ImageTransparency above.
 		end
 	end
 
@@ -1469,10 +1465,8 @@ local function Hide(Interface, JustHide: boolean?, Notify: boolean?, Bind: strin
 			Interface.ImageTransparency = 1
 		end
 
-		if Interface.ClassName == "UIStroke" then
+		if Interface.ClassName == "UIStroke" or Interface.ClassName == "UIGradient" then
 			Interface.Transparency = 1
-		elseif Interface.ClassName == "UIGradient" then
-			Interface.Transparency = NumberSequence.new(1)
 		end
 	end
 	
@@ -1521,6 +1515,10 @@ local function Hide(Interface, JustHide: boolean?, Notify: boolean?, Bind: strin
 				Duration = 2,
 			})
 		end
+	end
+
+	if Interface.ClassName == "ScreenGui" then
+		Starlight.Minimized = true
 	end
 end
 
@@ -2761,6 +2759,9 @@ function Starlight:CreateWindow(WindowSettings)
 				Tween(loadingCircle, { ImageTransparency = 0 }, nil, Tween.Info(nil, "InOut", 0.7))
 				Tween(title, { TextTransparency = 0 }, nil, Tween.Info(nil, "InOut", 0.7))
 				task.wait(0.05)
+				subtitle.Text = WindowSettings.LoadingSettings
+					and (WindowSettings.LoadingSettings.Subtitle or WindowSettings.LoadingSettings.Title)
+					or "Welcome To Yuki's TRD Hub ❤️"
 				Tween(subtitle, { TextTransparency = 0 }, nil, Tween.Info(nil, "InOut", 0.7))
 
 				if not loadingScreenLogoChanged then
@@ -2776,17 +2777,8 @@ function Starlight:CreateWindow(WindowSettings)
 					end
 				end
 
-				task.wait(3.24)
-
-				subtitle.Text = "Loaded!"
 				task.wait(0.5)
 
-				subtitle.Text = "Logging In..."
-				task.wait(1.72)
-
-				subtitle.Text = WindowSettings.LoadingSettings
-					and (WindowSettings.LoadingSettings.Subtitle or WindowSettings.LoadingSettings.Title)
-					or "Welcome To Yuki's TRD Hub ❤️"
 				Tween(title, { TextTransparency = 1 }, nil, Tween.Info("Quint", "InOut", 0.2))
 				Tween(title.playerName, { Position = UDim2.new(0, -8, 0, 0) }, nil, Tween.Info("Quint", "InOut", 0.85))
 				Tween(
@@ -10152,7 +10144,6 @@ function Starlight:CreateWindow(WindowSettings)
 		mainWindow.Content.Topbar.Controls.Minimize["MouseButton1Click"]:Connect(function()
 			if not debounce then
 				debounce = true
-				Starlight.Minimized = true
 				Hide(mainWindow, false, true, Starlight.WindowKeybind)
 				Hide(StarlightUI.Drag, false, false, Starlight.WindowKeybind)
 				task.delay(0.4, function()
@@ -10179,7 +10170,6 @@ function Starlight:CreateWindow(WindowSettings)
 			elseif Starlight.Minimized == false then
 				if not debounce then
 					debounce = true
-					Starlight.Minimized = true
 					Hide(mainWindow, false, true, Starlight.WindowKeybind)
 					Hide(StarlightUI.Drag, false, false, Starlight.WindowKeybind)
 					task.delay(0.4, function()
@@ -10211,7 +10201,6 @@ function Starlight:CreateWindow(WindowSettings)
 				elseif Starlight.Minimized == false then
 					if not debounce then
 						debounce = true
-						Starlight.Minimized = true
 						Hide(mainWindow, false, true, Starlight.WindowKeybind)
 						Hide(StarlightUI.Drag, false, false, Starlight.WindowKeybind)
 						task.delay(0.4, function()
