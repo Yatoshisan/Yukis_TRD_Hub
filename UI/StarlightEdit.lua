@@ -1413,9 +1413,11 @@ local function Hide(Interface, JustHide: boolean?, Notify: boolean?, Bind: strin
 
 			if v.ClassName == "UIStroke" then
 				v.Transparency = 1
-			elseif v.ClassName == "UIGradient" then
-				v.Transparency = NumberSequence.new(1)
 			end
+			-- UIGradient.Transparency is intentionally NOT zeroed here:
+			-- its transparency on TextLabel children would make text permanently invisible
+			-- since notification fade-in only restores TextTransparency, not UIGradient.Transparency.
+			-- Text/image hiding is already covered by TextTransparency and ImageTransparency above.
 		end
 	end
 
