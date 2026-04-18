@@ -1411,9 +1411,13 @@ local function Hide(Interface, JustHide: boolean?, Notify: boolean?, Bind: strin
 				v.ImageTransparency = 1
 			end
 
-			if v.ClassName == "UIStroke" or v.ClassName == "UIGradient" then
+			if v.ClassName == "UIStroke" then
 				v.Transparency = 1
 			end
+			-- UIGradient.Transparency is intentionally NOT zeroed here:
+			-- its transparency on TextLabel children would make text permanently invisible
+			-- since notification fade-in only restores TextTransparency, not UIGradient.Transparency.
+			-- Text/image hiding is already covered by TextTransparency and ImageTransparency above.
 		end
 	end
 
@@ -1465,8 +1469,10 @@ local function Hide(Interface, JustHide: boolean?, Notify: boolean?, Bind: strin
 			Interface.ImageTransparency = 1
 		end
 
-		if Interface.ClassName == "UIStroke" or Interface.ClassName == "UIGradient" then
+		if Interface.ClassName == "UIStroke" then
 			Interface.Transparency = 1
+		elseif Interface.ClassName == "UIGradient" then
+			Interface.Transparency = NumberSequence.new(1)
 		end
 	end
 	
@@ -1515,10 +1521,6 @@ local function Hide(Interface, JustHide: boolean?, Notify: boolean?, Bind: strin
 				Duration = 2,
 			})
 		end
-	end
-
-	if Interface.ClassName == "ScreenGui" then
-		Starlight.Minimized = true
 	end
 end
 
@@ -10150,6 +10152,7 @@ function Starlight:CreateWindow(WindowSettings)
 		mainWindow.Content.Topbar.Controls.Minimize["MouseButton1Click"]:Connect(function()
 			if not debounce then
 				debounce = true
+				Starlight.Minimized = true
 				Hide(mainWindow, false, true, Starlight.WindowKeybind)
 				Hide(StarlightUI.Drag, false, false, Starlight.WindowKeybind)
 				task.delay(0.4, function()
@@ -10176,6 +10179,7 @@ function Starlight:CreateWindow(WindowSettings)
 			elseif Starlight.Minimized == false then
 				if not debounce then
 					debounce = true
+					Starlight.Minimized = true
 					Hide(mainWindow, false, true, Starlight.WindowKeybind)
 					Hide(StarlightUI.Drag, false, false, Starlight.WindowKeybind)
 					task.delay(0.4, function()
@@ -10207,6 +10211,7 @@ function Starlight:CreateWindow(WindowSettings)
 				elseif Starlight.Minimized == false then
 					if not debounce then
 						debounce = true
+						Starlight.Minimized = true
 						Hide(mainWindow, false, true, Starlight.WindowKeybind)
 						Hide(StarlightUI.Drag, false, false, Starlight.WindowKeybind)
 						task.delay(0.4, function()
