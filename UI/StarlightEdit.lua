@@ -2759,9 +2759,6 @@ function Starlight:CreateWindow(WindowSettings)
 				Tween(loadingCircle, { ImageTransparency = 0 }, nil, Tween.Info(nil, "InOut", 0.7))
 				Tween(title, { TextTransparency = 0 }, nil, Tween.Info(nil, "InOut", 0.7))
 				task.wait(0.05)
-				subtitle.Text = WindowSettings.LoadingSettings
-					and (WindowSettings.LoadingSettings.Subtitle or WindowSettings.LoadingSettings.Title)
-					or "Welcome To Yuki's TRD Hub ❤️"
 				Tween(subtitle, { TextTransparency = 0 }, nil, Tween.Info(nil, "InOut", 0.7))
 
 				if not loadingScreenLogoChanged then
@@ -2777,8 +2774,17 @@ function Starlight:CreateWindow(WindowSettings)
 					end
 				end
 
+				task.wait(3.24)
+
+				subtitle.Text = "Loaded!"
 				task.wait(0.5)
 
+				subtitle.Text = "Logging In..."
+				task.wait(1.72)
+
+				subtitle.Text = WindowSettings.LoadingSettings
+					and (WindowSettings.LoadingSettings.Subtitle or WindowSettings.LoadingSettings.Title)
+					or "Welcome To Yuki's TRD Hub ❤️"
 				Tween(title, { TextTransparency = 1 }, nil, Tween.Info("Quint", "InOut", 0.2))
 				Tween(title.playerName, { Position = UDim2.new(0, -8, 0, 0) }, nil, Tween.Info("Quint", "InOut", 0.85))
 				Tween(
