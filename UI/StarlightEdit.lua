@@ -1522,10 +1522,6 @@ local function Hide(Interface, JustHide: boolean?, Notify: boolean?, Bind: strin
 			})
 		end
 	end
-
-	if Notify then
-		Starlight.Minimized = true
-	end
 end
 
 -- Unhides the given object which has been hidden by hide
@@ -10156,6 +10152,7 @@ function Starlight:CreateWindow(WindowSettings)
 		mainWindow.Content.Topbar.Controls.Minimize["MouseButton1Click"]:Connect(function()
 			if not debounce then
 				debounce = true
+				Starlight.Minimized = true
 				Hide(mainWindow, false, true, Starlight.WindowKeybind)
 				Hide(StarlightUI.Drag, false, false, Starlight.WindowKeybind)
 				task.delay(0.4, function()
@@ -10182,6 +10179,7 @@ function Starlight:CreateWindow(WindowSettings)
 			elseif Starlight.Minimized == false then
 				if not debounce then
 					debounce = true
+					Starlight.Minimized = true
 					Hide(mainWindow, false, true, Starlight.WindowKeybind)
 					Hide(StarlightUI.Drag, false, false, Starlight.WindowKeybind)
 					task.delay(0.4, function()
@@ -10213,6 +10211,7 @@ function Starlight:CreateWindow(WindowSettings)
 				elseif Starlight.Minimized == false then
 					if not debounce then
 						debounce = true
+						Starlight.Minimized = true
 						Hide(mainWindow, false, true, Starlight.WindowKeybind)
 						Hide(StarlightUI.Drag, false, false, Starlight.WindowKeybind)
 						task.delay(0.4, function()
