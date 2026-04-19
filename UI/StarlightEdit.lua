@@ -2785,13 +2785,13 @@ function Starlight:CreateWindow(WindowSettings)
 					end
 				end
 
-				task.wait(3.24)
+				task.wait(0.1)
 
 				subtitle.Text = "Loaded!"
-				task.wait(0.5)
+				task.wait(0.2)
 
 				subtitle.Text = "Logging In..."
-				task.wait(1.72)
+				task.wait(0.5)
 
 				subtitle.Text = WindowSettings.LoadingSettings
 					and (WindowSettings.LoadingSettings.Subtitle or WindowSettings.LoadingSettings.Title)
